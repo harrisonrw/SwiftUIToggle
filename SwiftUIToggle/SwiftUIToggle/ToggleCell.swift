@@ -10,7 +10,7 @@ import SwiftUI
 struct ToggleCell: View {
     
     var title: String
-    @ObservedObject var toggleState:ToggleState
+    @ObservedObject var toggleState: ToggleState
     var onChangeHandler: ((Bool) -> Void)?
     
     var body: some View {
@@ -20,7 +20,7 @@ struct ToggleCell: View {
             Color(red: 55/255, green: 55/255, blue: 55/255, opacity: 1)
                 .edgesIgnoringSafeArea(/*@START_MENU_TOKEN@*/.all/*@END_MENU_TOKEN@*/)
             
-            Toggle(isOn: $toggleState.isOn, label: {
+            Toggle(isOn: $toggleState.isOn) {
                        
                 Text(title)
                     .font(.system(size: 18))
@@ -29,7 +29,7 @@ struct ToggleCell: View {
                     .padding(15)
                     .foregroundColor(.primary)
 
-            })
+            }
             .onChange(of: toggleState.isOn) { isEnabled in
                 onChangeHandler?(isEnabled)
             }
